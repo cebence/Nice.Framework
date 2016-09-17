@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+		ToolsVersion="12.0"
+		DefaultTargets="Build">
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+	<Import Project="..\MSBuild-Extensions\Nice.ProjectDefaults.props"/>
+
+	<Target Name="Build">
+		<Message Text="MSBuildProjectFile = $(MSBuildProjectFile)"/>
+		<Message Text="IsUnitTestsProject = $(IsUnitTestsProject)"/>
+		<Message Text="IsIntegrationTestsProject = $(IsIntegrationTestsProject)"/>
+		<Message Text="IsTestsProject = $(IsTestsProject)"/>
+		<Message Text="ProjectTypeGuids = $(ProjectTypeGuids)"/>
+
+		<Error Text="This should have been recognized as a unit test project."
+				Condition="!$(IsUnitTestsProject) or !$(IsTestsProject) or $(IsIntegrationTestsProject)"/>
+
+		<Error Text="This should have been recognized as a C++ project."
+				Condition="'$(ProjectTypeGuids)' != '{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}'"/>
+	</Target>
+</Project>

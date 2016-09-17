@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003"
+		ToolsVersion="12.0"
+		DefaultTargets="Deploy">
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+
+	<!-- Find all MSBuild extension files provided by Nice framework. -->
+	<ItemGroup>
+		<NiceExtensionsFile Include="MSBuild-Extensions\*.props"/>
+		<NiceExtensionsFile Include="MSBuild-Extensions\*.targets"/>
+	</ItemGroup>
+
+	<PropertyGroup>
+		<!-- If set to true from the command line it will deploy the extensions to the local "build" folder. -->
+		<Simulation Condition="'$(Simulation)' == ''">false</Simulation>
+
+		<!-- Output location of the Nice MSBuild extensions. -->
+		<NiceExtensionsPath>$(MSBuildExtensionsPath)\Nice</NiceExtensionsPath>
+		<NiceExtensionsPath Condition="'$(Simulation)'">$(MSBuildProjectDirectory)\build\Nice</NiceExtensionsPath>
+	</PropertyGroup>
+
+	<Target Name="Deploy">
+		<Message Text="To test the deployment logic use the following command:&#10;  msbuild $(MSBuildProjectFile) /p:Simulation=true&#10;"/>
+
+		<MakeDir Directories="$(NiceExtensionsPath)"
+				Condition="!Exists('$(NiceExtensionsPath)')"/>
+
+		<Copy SourceFiles="@(NiceExtensionsFile)"
+				DestinationFolder="$(NiceExtensionsPath)"
+				OverwriteReadOnlyFiles="true"/>
+    </Target>
+
+
+	<!-- ################################################################################ -->
+	<!-- Runs the "unit" test projects to confirm expected functionality. -->
+	<ItemGroup>
+		<TestProjects Include="Test\Test.*"/>
+	</ItemGroup>
+
+	<Target Name="Test">
+		<Message Text="Running tests ..."/>
+		<MSBuild Projects="@(TestProjects)"/>
+	</Target>
+</Project>
