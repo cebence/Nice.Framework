@@ -9,6 +9,6 @@ The main project named `${project}.*proj` should have a matching unit tests proj
   - [x] Mark the `.vbproj` test project correctly.
   - [x] Mark the `.vcxproj` test project correctly.
   - [ ] Mark [other kinds of projects](http://www.codeproject.com/Reference/720512/List-of-Visual-Studio-Project-Type-GUIDs).
-- [ ] Name the generated XMLDoc (technical documentation) file the same as the assembly, i.e. reuse the `AssemblyName` property.
+- [x] Name the generated XMLDoc (technical documentation) file the same as the assembly, i.e. reuse the `AssemblyName` property.
 - [x] Move the generated XMLDoc file from the project root into `OutputPath` so it can be ignored by the SCM (Git, Mercurial, etc.).
 - [x] Automatically include the project's README file.

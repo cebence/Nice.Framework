@@ -16,6 +16,12 @@ The `Nice.ProjectDefaults.props` introduces the following properties to help bui
 - `IsTestsProject` is `true` if the project is any of the former two.
 
 
+### Automatically name the XMLDoc file
+This feature will automatically name the generated documentation (XMLDoc) file to match the name of the assembly, i.e. `DocumentationFile = $(AssemblyName).xml`.
+Instead of manually specifying the `DocumentationFile` property the developer should only set the `GenerateDocumentation` property to `true`.
+Note that customizing the `DocumentationFile` property disables/overrides this feature.
+
+
 ### MoveDocumentationFileToOutputPath target
 Fixes the issue where the generated documentation (XMLDoc) file is left in the project root to be picked up by the SCM tool (git, hg, etc.) instead of moving it into `./bin` where it is ignored by default.
 
