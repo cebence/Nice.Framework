@@ -2,7 +2,6 @@
 
 **Nice.Build** is a set of MSBuild extensions to ease the .NET development process by using *convention over configuration*.
 
-
 ## Usage
 
 Import the `Nice.ProjectDefaults.props` file **at the top** of your `.csproj` (or any other .NET project) file:
@@ -11,7 +10,8 @@ Import the `Nice.ProjectDefaults.props` file **at the top** of your `.csproj` (o
 <?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ...>
 	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" ... />
-	<Import Project="$(MSBuildExtensionsPath)\Nice\Nice.ProjectDefaults.props" Condition="Exists('$(MSBuildExtensionsPath)\Nice\Nice.ProjectDefaults.props')"/>
+	<Import Project="$(MSBuildExtensionsPath)\Nice\Nice.ProjectDefaults.props"
+			Condition="Exists('$(MSBuildExtensionsPath)\Nice\Nice.ProjectDefaults.props')"/>
 	...
 ```
 
@@ -22,12 +22,15 @@ The second part is to import the `Nice.Build.targets` file **at the bottom** of 
 ```
 	...
 	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" .../>
-	<Import Project="$(MSBuildExtensionsPath)\Nice\Nice.Build.targets" Condition="Exists('$(MSBuildExtensionsPath)\Nice\Nice.Build.targets')"/>
+	<Import Project="$(MSBuildExtensionsPath)\Nice\Nice.Build.targets"
+			Condition="Exists('$(MSBuildExtensionsPath)\Nice\Nice.Build.targets')"/>
 </Project>
 ```
 
 All "Nice" imports are conditional, nothing should happen if any of those files is missing, i.e. your project will not fail to build.
 This is true only if you do not reference directly any custom properties and/or targets (from those files) in your projects, in which case the build should fail if those files are missing.
+
+For details on usage and general features see [Features.md](Features.md).
 
 
 ## How To Build or Contribute
