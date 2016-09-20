@@ -33,3 +33,8 @@ This feature will automatically include (make accessible in Visual Studio) eithe
 
 ### Automatically set RootNamespace
 This feature will automatically set project's `RootNamespace`, if it is not already set, to match the name of the assembly, i.e. `RootNamespace = $(AssemblyName)`.
+
+
+### Do not force TreatWarningsAsErrors
+`TreatWarningsAsErrors` property is by default set to `false`. This does not forces the developer to fix minor issues (warnings) in non-production code (e.g. unit tests) and in production code during development and/or debugging.
+The developer will be forced to fix warnings in order to release the main project for deployment to production.

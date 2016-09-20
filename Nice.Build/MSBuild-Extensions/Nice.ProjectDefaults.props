@@ -22,4 +22,33 @@
 		<None Include="README.md" Condition="Exists('README.md')"/>
 		<None Include="README.txt" Condition="Exists('README.txt')"/>
 	</ItemGroup>
+
+	<!-- ################################################################################ -->
+	<!-- Default project configuration and platform. -->
+	<PropertyGroup>
+		<Configuration Condition="'$(Configuration)' == ''">Debug</Configuration>
+		<Platform Condition="'$(Platform)' == ''">AnyCPU</Platform>
+	</PropertyGroup>
+
+	<!-- ################################################################################ -->
+	<!-- Predefined build-related project properties. -->
+	<PropertyGroup>
+		<ErrorReport>prompt</ErrorReport>
+		<!-- No need to force the developer to fix warnings during development/debugging. -->
+		<TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<Optimize>false</Optimize>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<DebugType>pdbonly</DebugType>
+		<DefineConstants>TRACE</DefineConstants>
+		<Optimize>true</Optimize>
+		<!-- Force the developer to fix warnings in a project released to production, i.e. not a test project. -->
+		<TreatWarningsAsErrors Condition="!$(IsTestsProject)">true</TreatWarningsAsErrors>
+	</PropertyGroup>
 </Project>
