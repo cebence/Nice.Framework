@@ -17,9 +17,17 @@ Import the `Nice.ProjectDefaults.props` file **at the top** of your `.csproj` (o
 
 > Notice that `Nice.ProjectDefaults.props` should come **after** the `Microsoft.Common.props`. If your project imports any other files like this you might have to experiment with the exact order to make everything work as expected.
 
-No need to worry that your project will fail to build if `Nice.ProjectDefaults.props` is missing - the `Condition` prevents that from happening.
+The second part is to import the `Nice.Build.targets` file **at the bottom** of your project file:
 
-**TODO Part 2, import the targets.**
+```
+	...
+	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" .../>
+	<Import Project="$(MSBuildExtensionsPath)\Nice\Nice.Build.targets" Condition="Exists('$(MSBuildExtensionsPath)\Nice\Nice.Build.targets')"/>
+</Project>
+```
+
+All "Nice" imports are conditional, nothing should happen if any of those files is missing, i.e. your project will not fail to build.
+This is true only if you do not reference directly any custom properties and/or targets (from those files) in your projects, in which case the build should fail if those files are missing.
 
 
 ## How To Build or Contribute
