@@ -15,4 +15,11 @@
 		<IsCodedUITest Condition="$(IsTestsProject)">False</IsCodedUITest>
 		<TestProjectType Condition="$(IsUnitTestsProject)">UnitTest</TestProjectType>
 	</PropertyGroup>
+
+	<!-- ################################################################################ -->
+	<!-- Automatically include the project's README file if available. -->
+	<ItemGroup>
+		<None Include="README.md" Condition="Exists('README.md')"/>
+		<None Include="README.txt" Condition="Exists('README.txt')"/>
+	</ItemGroup>
 </Project>

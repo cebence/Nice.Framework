@@ -18,3 +18,8 @@ The `Nice.ProjectDefaults.props` introduces the following properties to help bui
 
 ### MoveDocumentationFileToOutputPath target
 Fixes the issue where the generated documentation (XMLDoc) file is left in the project root to be picked up by the SCM tool (git, hg, etc.) instead of moving it into `./bin` where it is ignored by default.
+
+
+### Automatically include the project's README file
+A project should have a README file but is not required to.
+This feature will automatically include (make accessible in Visual Studio) either the `README.md` or the `README.txt` file if they exist in the project's root folder - i.e. the developer does not have to include them manually in the project.
