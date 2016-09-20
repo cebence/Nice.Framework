@@ -1,13 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-	<!-- Automatically name the generated documentation (XMLDoc) file (to match the assembly). -->
-	<PropertyGroup Condition="'$(DocumentationFile)' == '' and '$(GenerateDocumentation)' != '' and $(GenerateDocumentation)">
-		<!--
-		Although this is a property, it depends on project-level properties and needs to be here in order to use them.
-		IMPORTANT: DO NOT create the variable if GenerateDocumentation is not true!
-		-->
-		<DocumentationFile>$(AssemblyName).xml</DocumentationFile>
-	</PropertyGroup>
+	<Import Project="$(MSBuildThisFileDirectory)\Nice.ProjectDefaults-LateBinding.props" Condition="Exists('$(MSBuildThisFileDirectory)\Nice.ProjectDefaults-LateBinding.props')"/>
 
 	<!-- ################################################################################ -->
 	<!-- Move the generated documentation (XMLDoc) file from project root into OutputPath. -->

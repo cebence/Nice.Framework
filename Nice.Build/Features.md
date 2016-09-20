@@ -29,3 +29,7 @@ Fixes the issue where the generated documentation (XMLDoc) file is left in the p
 ### Automatically include the project's README file
 A project should have a README file but is not required to.
 This feature will automatically include (make accessible in Visual Studio) either the `README.md` or the `README.txt` file if they exist in the project's root folder - i.e. the developer does not have to include them manually in the project.
+
+
+### Automatically set RootNamespace
+This feature will automatically set project's `RootNamespace`, if it is not already set, to match the name of the assembly, i.e. `RootNamespace = $(AssemblyName)`.

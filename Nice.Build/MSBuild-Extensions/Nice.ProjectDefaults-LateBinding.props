@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<!--
+	All properties that depend on project-level properties, i.e.
+	that need to be evaluated at the end of the project file,
+	must be specified here.
+	-->
+
+	<!-- ################################################################################ -->
+	<!-- Automatically name the generated documentation (XMLDoc) file (to match the assembly). -->
+	<PropertyGroup Condition="'$(DocumentationFile)' == '' and '$(GenerateDocumentation)' != '' and $(GenerateDocumentation)">
+		<!-- IMPORTANT: DO NOT create the variable if GenerateDocumentation is not true! -->
+		<DocumentationFile>$(AssemblyName).xml</DocumentationFile>
+	</PropertyGroup>
+
+	<!-- ################################################################################ -->
+	<!-- Automatically set root namespace, if not already set, to assembly name. -->
+	<PropertyGroup Condition="'$(RootNamespace)' == ''">
+		<RootNamespace>$(AssemblyName)</RootNamespace>
+	</PropertyGroup>
+</Project>

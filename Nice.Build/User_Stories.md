@@ -12,3 +12,4 @@ The main project named `${project}.*proj` should have a matching unit tests proj
 - [x] Name the generated XMLDoc (technical documentation) file the same as the assembly, i.e. reuse the `AssemblyName` property.
 - [x] Move the generated XMLDoc file from the project root into `OutputPath` so it can be ignored by the SCM (Git, Mercurial, etc.).
 - [x] Automatically include the project's README file.
+- [x] Automatically set `RootNamespace`, if not already set, to `AssemblyName`.
